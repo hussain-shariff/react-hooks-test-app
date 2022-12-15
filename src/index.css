@@ -197,7 +197,7 @@ main {
   right: 0;
   background-color: var(--clr-pink);
   border: none;
-  padding: 0.5rem 2rem;
+  padding: 0.5em 2em;
   cursor: pointer;
   border-radius: 5px;
   color: white;
