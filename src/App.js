@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import List from "./List";
+import data from './data'
+
 
 function App() {
+  const [cardData, setCardData] = React.useState(data);
+  let cardElements = cardData.map((card)=>
+      <List image= { card.image }
+            name = { card.name }
+            key = { card.id }
+            age = { card.age }
+            id = { card.id }
+            removeCard = { delCard }/>
+  )
+
+  function delCard(id){
+    let newArr = cardData.filter((card)=> card.id !== id);
+    setCardData(newArr)
+  }
+
+  function handleClick(){
+    cardData.length === 0 ? setCardData(data) : setCardData([])
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <main>
+        <section className="container">
+          <h3>{ cardData.length } Birthdays today</h3>
+          { cardElements }
+          <button className="clear-btn" onClick={ handleClick }>{cardData.length === 0? "show all" : "Clear all"}</button>
+        </section>
+      </main>
     </div>
   );
 }
